@@ -9,7 +9,7 @@ cp ${path_location}/files/roboshop.conf /etc/nginx/default.d/roboshop.conf &>> $
 status_check
 
 print_Head "enable and start nginx"
-systemctl enable nginx
+systemctl enable nginx &>> ${LOG}
 systemctl start nginx
 status_check
 
@@ -18,12 +18,12 @@ rm -rf /usr/share/nginx/html/*
 status_check
 
 print_Head "download nginx content"
-curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip
+curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend.zip &>> ${LOG}
 status_check
 
 print_Head "navigate to app directory and unzip"
 cd /usr/share/nginx/html
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>> ${LOG}
 status_check
 
 print_Head "restart nginx"
