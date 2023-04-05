@@ -1,5 +1,11 @@
 source common.sh
 
+if [ -z "${mysql_root_password}" ]
+then
+  echo "please provide mysql_root_password"
+  exit 1
+fi
+
 print_head "disable mysql 8 which will come by default with centos 8"
 dnf module disable mysql -y &>> ${LOG}
 status_check
@@ -18,5 +24,5 @@ systemctl restart mysqld
 status_check
 
 print_head "change the default root password in order to start using the database service."
-mysql_secure_installation --set-root-password Roboshop@1
+mysql_secure_installation --set-root-password ${mysql_root_password}
 status_check
