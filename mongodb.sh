@@ -9,7 +9,7 @@ yum install mongodb-org -y &>> ${LOG}
 status_check
 
 print_Head "updating listed address"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf && /etc/mongo/mongod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 status_check
 
 print_Head "enable and start mongodb"
