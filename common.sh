@@ -88,6 +88,32 @@ schema_load(){
       mongo --host 172.31.80.124 </app/schema/${component}.js &>> ${LOG}
       status_check
     fi
+    if [ $schema_type == "mysql" ]
+    then
+      print_head "installing mysql"
+      yum install mysql -y  &>> ${LOG}
+      status_check
+
+      print_head "loading schema"
+      mysql -h 172.31.80.124 -uroot -pRoboShop@1 </app/schema/${component}.sql &>> ${LOG}
+      status_check
+    fi
   fi
 }
 
+maven(){
+  print_head "installing maven"
+  yum install maven -y &>> ${LOG}
+  status_check
+
+  app_prereq
+
+  print_head "install app dependencies"
+  mvn clean package &>> ${LOG}
+  status_check
+
+  systemd_setup
+
+  schema_load
+
+}
