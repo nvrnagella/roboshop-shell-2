@@ -88,5 +88,6 @@ schema_load(){
       mongo --host 172.31.80.124 </app/schema/${component}.js &>> ${LOG}
       status_check
     fi
+  fi
 }
 
