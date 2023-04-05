@@ -47,11 +47,11 @@ print_head "enable and restart catalogue"
 systemctl enable catalogue &>> ${LOG}
 systemctl restart catalogue
 
-print_Head "setup mongodb repo file"
+print_head "setup mongodb repo file"
 cp ${path_location}/files/mongo.repo /etc/yum.repos.d/mongo.repo &>> ${LOG}
 status_check
 
-print_Head "installing mongodb"
+print_head "installing mongodb"
 yum install mongodb-org-shell -y &>> ${LOG}
 status_check
 
