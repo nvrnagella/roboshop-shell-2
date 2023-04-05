@@ -99,7 +99,7 @@ schema_load(){
       status_check
 
       print_head "loading schema"
-      mysql -h 172.31.80.124 -uroot -pRoboShop@1 </app/schema/${component}.sql &>> ${LOG}
+      mysql -h 172.31.22.23 -uroot -pRoboShop@1 </app/schema/${component}.sql &>> ${LOG}
       status_check
     fi
   fi
@@ -129,9 +129,24 @@ python(){
   app_prereq
 
   print_head "install app dependencies"
-  pip3.6 install -r requirements.txt
+  pip3.6 install -r requirements.txt &>> ${LOG}
   status_check
 
   systemd_setup
+}
 
+golang{
+  print_head "installing golang"
+  yum install golang -y &>> ${LOG}
+  status_check
+
+  app_prereq
+
+  print_head "install app dependencies"
+  go mod init dispatch &>> ${LOG}
+  go get &>> ${LOG}
+  go build &>> ${LOG}
+  status_check
+
+  systemd_setup
 }
