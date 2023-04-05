@@ -1,6 +1,6 @@
 source common.sh
 
-print_Head "copying reverse proxy configuration file"
+print_Head "setup mongodb repo file"
 cp ${path_location}/files/mongo.repo /etc/yum.repos.d/mongo.repo &>> ${LOG}
 status_check
 
