@@ -135,7 +135,7 @@ python(){
   systemd_setup
 }
 
-golang{
+golang(){
   print_head "installing golang"
   yum install golang -y &>> ${LOG}
   status_check
