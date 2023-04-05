@@ -8,18 +8,13 @@ print_Head "installing mongodb"
 yum install mongodb-org -y &>> ${LOG}
 status_check
 
+print_Head "updating listed address"
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+status_check
 
 print_Head "enable and start mongodb"
 systemctl enable mongod &>> ${LOG}
 systemctl start mongod
-status_check
-
-print_Head "updating listed address"
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.repo
-status_check
-
-print_Head "restart mongodb"
-systemctl restart mongod
 status_check
 
 
