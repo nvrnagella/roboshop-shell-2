@@ -20,7 +20,7 @@ mkdir -p /app
 status_check
 
 print_head "remove old app content"
-rm -rf /app
+rm -rf /app/*
 status_check
 
 print_head "download app content"
