@@ -66,6 +66,10 @@ systemd_setup(){
   cp ${path_location}/files/${component}.service /etc/systemd/system/${component}.service
   status_check
 
+  print_head "reloading systemd file"
+  systemctl daemon-reload
+  status_check
+
   print_head "enable and restart ${component}"
   systemctl enable ${component} &>> ${LOG}
   systemctl restart ${component}
@@ -115,5 +119,19 @@ maven(){
   systemd_setup
 
   schema_load
+}
+
+python(){
+  print_head "installing python gcc python3-devel"
+  yum install python36 gcc python3-devel -y &>> ${LOG}
+  status_check
+
+  app_prereq
+
+  print_head "install app dependencies"
+  pip3.6 install -r requirements.txt
+  status_check
+
+  systemd_setup
 
 }
