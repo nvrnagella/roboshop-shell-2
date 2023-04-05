@@ -1,4 +1,5 @@
 LOG=/tmp/roboshop.log
+path_location=$(pwd)
 print_Head(){
   echo -e "\e[31m$1\e[0m"
 }
