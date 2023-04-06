@@ -132,6 +132,10 @@ python(){
   pip3.6 install -r requirements.txt &>> ${LOG}
   status_check
 
+  print_head "updating password in service file"
+  sed -i -e 's/rabbitmq_root_password/${rabbitmq_root_password}/' ${path_location}/files/${component}.service
+  status_check
+
   systemd_setup
 }
 
@@ -146,6 +150,10 @@ golang(){
   go mod init dispatch &>> ${LOG}
   go get &>> ${LOG}
   go build &>> ${LOG}
+  status_check
+
+  print_head "updating password in service file"
+  sed -i -e 's/rabbitmq_root_password/${rabbitmq_root_password}/' ${path_location}/files/${component}.service
   status_check
 
   systemd_setup

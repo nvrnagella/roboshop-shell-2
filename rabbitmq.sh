@@ -32,7 +32,10 @@ systemctl restart rabbitmq-server
 status_check
 
 print_head "adding user for rabbitmq "
-rabbitmqctl add_user roboshop ${rabbitmq_root_password}
+rabbitmqctl list_users | grep roboshop
+if [ $? -eq 0 ]; then
+  rabbitmqctl add_user roboshop ${rabbitmq_root_password} &>> ${LOG}
+fi
 status_check
 
 print_head "setting admin tag for rabbitmq user "

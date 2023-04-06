@@ -1,8 +1,8 @@
 source common.sh
 
-if [ -z "${mysql_root_password}" ]
+if [ -z "${rabbitmq_root_password}" ]
 then
-  echo "please provide mysql_root_password"
+  echo "please provide rabbitmq_root_password"
   exit 1
 fi
 
