@@ -89,7 +89,7 @@ schema_load(){
       status_check
 
       print_head "loading schema"
-      mongo --host 172.31.80.124 </app/schema/${component}.js &>> ${LOG}
+      mongo --host 172.31.25.247 </app/schema/${component}.js &>> ${LOG}
       status_check
     fi
     if [ $schema_type == "mysql" ]
