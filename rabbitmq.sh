@@ -33,7 +33,7 @@ status_check
 
 print_head "adding user for rabbitmq "
 rabbitmqctl list_users | grep roboshop
-if [ $? -eq 0 ]; then
+if [ $? -ne 0 ]; then
   rabbitmqctl add_user roboshop ${rabbitmq_root_password} &>> ${LOG}
 fi
 status_check
