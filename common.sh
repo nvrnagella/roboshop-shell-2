@@ -116,6 +116,9 @@ maven(){
   mvn clean package &>> ${LOG}
   status_check
 
+  print_head "making jar file available"
+  mv target/${component}-1.0.jar ${component}.jar
+
   systemd_setup
 
   schema_load
