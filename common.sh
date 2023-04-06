@@ -136,7 +136,7 @@ python(){
   status_check
 
   print_head "updating password in service file"
-  sed -i -e 's/rabbitmq_root_password/${rabbitmq_root_password}/' ${path_location}/files/${component}.service
+  sed -i -e "s/rabbitmq_root_password/${rabbitmq_root_password}/" ${path_location}/files/${component}.service
   status_check
 
   systemd_setup
@@ -156,7 +156,7 @@ golang(){
   status_check
 
   print_head "updating password in service file"
-  sed -i -e 's/rabbitmq_root_password/${rabbitmq_root_password}/' ${path_location}/files/${component}.service
+  sed -i -e "s/rabbitmq_root_password/${rabbitmq_root_password}/" ${path_location}/files/${component}.service
   status_check
 
   systemd_setup
